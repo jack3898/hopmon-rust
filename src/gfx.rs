@@ -297,7 +297,7 @@ impl Gfx {
         }
         if let Some(mut img) = assets.bitmap(id) {
             if flags & TEXTR_TRANSPARENT_BLACK != 0 {
-                for px in img.rgba.chunks_exact_mut(4) {
+                for px in img.rgba.as_chunks_mut::<4>().0 {
                     if px[0] == 0 && px[1] == 0 && px[2] == 0 {
                         px[3] = 0;
                     }
@@ -350,7 +350,7 @@ impl Gfx {
             });
             if color_key {
                 let k = img.pixel(0, 0);
-                for px in img.rgba.chunks_exact_mut(4) {
+                for px in img.rgba.as_chunks_mut::<4>().0 {
                     if px[0] == k[0] && px[1] == k[1] && px[2] == k[2] {
                         px[3] = 0;
                     }

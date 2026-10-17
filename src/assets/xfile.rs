@@ -328,7 +328,7 @@ fn build_mesh(node: &Node) -> Result<XMesh, String> {
 fn compute_normals(m: &mut XMesh) {
     let mut acc = vec![Vec3::ZERO; m.positions.len()];
     for (_, idx) in &m.groups {
-        for t in idx.chunks_exact(3) {
+        for t in idx.as_chunks::<3>().0 {
             let (a, b, c) = (t[0] as usize, t[1] as usize, t[2] as usize);
             let (p0, p1, p2) = (m.positions[a], m.positions[b], m.positions[c]);
             let n = (p1 - p0).cross(p2 - p1).normalize_or_zero();

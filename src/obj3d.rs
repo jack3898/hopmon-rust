@@ -345,7 +345,7 @@ impl ObjX {
             let (verts, indices): (Vec<LVertex>, Vec<u16>) = if self.flat {
                 // D3DSHADE_FLAT: the first vertex of each triangle sets the colour.
                 let mut vs = Vec::with_capacity(idx.len());
-                for t in idx.chunks_exact(3) {
+                for t in idx.as_chunks::<3>().0 {
                     let col = shade(nrm[t[0] as usize]);
                     for &i in t {
                         vs.push(LVertex {
