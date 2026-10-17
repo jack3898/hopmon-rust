@@ -1,0 +1,11 @@
+/target
+# Original game data is never committed; users supply their own copy.
+*.exe
+*.EXE
+*.pdb
+*.mid
+*.MID
+*.sf2
+/data/
+*.png
+!docs/**/*.png
